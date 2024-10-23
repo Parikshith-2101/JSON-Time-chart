@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+}
+.d-flex{
+    display: flex;
+}
+.ms-2{
+    margin-left: 8px;
+}
+header>div{
+    align-items: baseline;
+}
+.container{
+    padding : 25px 10%;
+}
+#schedule{
+    margin-top: 14px;
+    position: relative;
+    overflow: hidden;
+}
+.hour-label{
+    height: 59px;
+    color: hsl(25deg 3.09% 67.5%);
+    font-size : 14px;
+    border-top: 1px solid #ddd;
+}
+
+.graph9{
+    margin-left : 50%;
+    z-index: 2;
+}
+.hour-min-label{
+    height: 60px;
+    color: hsl(25deg 3.09% 67.5%);
+    text-align: end;
+    font-size: 12px;
+}
+.minDiv{
+    position: absolute;
+    top: 30px;
+}
+.graph{
+    position: absolute;
+    font-size: 9px;
+    border-left: 4px solid hsl(207.86deg 72.2% 71.68%);
+    width: 100%;
+    background: hsl(205.26deg 46.34% 91.96%);
+}
+.time-chart{
+    position : absolute; 
+    top : 0; 
+    left : 60px; 
+    width : 100%;
+}
