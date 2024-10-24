@@ -37,6 +37,18 @@ var data = [{
 }
 ];
 
+for (let i = 0; i < data.length; i++) {
+    let temp;
+    for (let j = i + 1; j < data.length; j++) {
+        if (data[j].start < data[i].start) {
+            temp = data[j];
+            data[j] = data[i];
+            data[i] = temp;
+        }
+    }
+
+}
+
 var schedule = document.getElementById('schedule');
 var hours = 11; 
 
@@ -58,30 +70,51 @@ var timeChart = document.createElement('div');
 timeChart.className = 'time-chart';
 schedule.appendChild(timeChart);
 
+var arrJ = [];
+var arrJ1 = [];
+
+for (let j = 0; j < data.length - 1; j++) {
 
 
-for(let j = 0 ; j<data.length ; j++){
+    let start = data[j].start;
+    let next_start = data[j + 1].start;
+    let duration = data[j].duration;
 
+    if (start + duration > next_start) {
+        arrJ.push(j);
+        arrJ1.push(j + 1);
+    }
+    console.log(arrJ);
+    console.log(arrJ1);
+
+
+}
+
+halfTaskPos=1;
+for (let j = 0; j < data.length; j++) {
     var graph = document.createElement('div');
-    graph.className = 'graph'+(j+1)+' graph';
+    graph.className = 'graph' + (j + 1) + ' graph';
     graph.innerText = data[j].title;
-    if((j<data.length-1 && (data[j+1].start - data[j].start) < data[j].duration)){
-        
-        if(data[j+1].start - data[j].start >= 15){
-            graph.style.marginLeft = '0%';
+
+    if (arrJ.includes(j) || arrJ1.includes(j)) {
+
+        if (halfTaskPos==1) {
+            halfTaskPos=0;
+            graph.style.width = '50%';
+            graph.style.marginLeft = '50.5%'
+        }
+        else {
+            halfTaskPos=1;
             graph.style.width = '50%';
         }
-        else{
-        graph.style.marginLeft = '50%';
-        graph.style.zIndex = '2';
-        }
     }
- 
-    //----
+    else
+    {
+        halfTaskPos=1;
+    }
     graph.style.top = data[j].start + 'px';
     graph.style.height = data[j].duration + 'px';
     timeChart.appendChild(graph);
-    //----
 }
 
 
